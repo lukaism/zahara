@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id String @id @default(uuid())
+  role String
+  name String
+  email String
+  password String
+}
+
+model Event {
+  id String @id @default(uuid())
+  name String
+  year Int
+  StartingDate DateTime
+  EndingDate String
+  active Boolean
+}
+
+model Atendance {
+  id String @id @default(uuid())
+  eventId String
+  DateFrom DateTime
+  DateTO DateTime
+  PayedStatus Boolean
+  userId String
+}
+
+
+
