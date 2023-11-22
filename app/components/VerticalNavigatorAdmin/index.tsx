@@ -1,9 +1,9 @@
 "use client";
-import { Flex } from '@chakra-ui/react'
+import { Container } from '@mui/material';
 import IconButtonLink from '../IconButtonLink';
 import { FcStatistics } from 'react-icons/fc'
-import { FaUserAlt } from 'react-icons/fa'
 import { BsCalendarEventFill } from 'react-icons/bs'
+
 
 type VerticalMenuElement = {
     href: string,
@@ -12,9 +12,8 @@ type VerticalMenuElement = {
 }
 
 
-export default function VerticalNavigatorAdmin() {
+export default function HorizontalNavigatorDatos() {
     const links = [
-        { href: '/admin/users', label: 'User Management', icon: FaUserAlt },
         { href: '/admin/statistics', label: 'Statistics', icon: FcStatistics },
         { href: '/admin/events', label: 'Events', icon: BsCalendarEventFill },
     ]
@@ -23,14 +22,14 @@ export default function VerticalNavigatorAdmin() {
 
 
     return (
-        <Flex justifyContent={'space-around'} background="blue.100" padding={"20px"} direction={'column'} height={"100vh"}>
+        <Container style={{ display: 'flex', justifyContent: "space-around", background: "green", padding: "20px" }} >
             {links.map(element => {
 
                 return (
-                    <IconButtonLink href={element.href} label={element.label} icon={element.icon} />
+                    <IconButtonLink key={element.label} href={element.href} label={element.label} icon={element.icon} />
                 )
             })}
 
-        </Flex>
+        </Container>
     )
 }

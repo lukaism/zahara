@@ -1,0 +1,52 @@
+------------------------------Cheat sheet command------------------------------
+
+Prisma is a modern DB toolkit to query, migrate and model your database (https://www.prisma.io)
+
+Usage
+
+  $ prisma [command]
+
+Commands
+
+            init   Setup Prisma for your app
+        generate   Generate artifacts (e.g. Prisma Client)
+              db   Manage your database schema and lifecycle
+         migrate   Migrate your database
+          studio   Browse your data with Prisma Studio
+        validate   Validate your Prisma schema
+          format   Format your Prisma schema
+
+Flags
+
+     --preview-feature   Run Preview Prisma commands
+
+Examples
+
+  Setup a new Prisma project
+  $ prisma init
+
+  Generate artifacts (e.g. Prisma Client)
+  $ prisma generate
+
+  Browse your data
+  $ prisma studio
+
+
+  Pull the schema from an existing database, updating the Prisma schema
+  $ prisma db pull
+
+  Push the Prisma schema state to the database
+  $ prisma db push
+
+  ------------------------------------------------------
+
+    Create migrations from your Prisma schema, apply them to the database, generate artifacts (e.g. Prisma Client)
+  $ prisma migrate dev
+
+  The migrate dev command:
+
+Reruns the existing migration history in the shadow database in order to detect schema drift (edited or deleted migration file, or a manual changes to the database schema)
+Applies pending migrations to the shadow database (for example, new migrations created by colleagues)
+Generates a new migration from any changes you made to the Prisma schema before running migrate dev
+Applies all unapplied migrations to the development database and updates the _prisma_migrations table
+Triggers the generation of artifacts (for example, Prisma Client)

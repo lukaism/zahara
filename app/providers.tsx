@@ -1,8 +1,7 @@
-// app/providers.tsx
+/* // app/providers.tsx
 'use client'
 
-import { CacheProvider } from '@chakra-ui/next-js'
-import { ChakraProvider } from '@chakra-ui/react'
+
 
 export function Providers({
     children
@@ -10,8 +9,6 @@ export function Providers({
     children: React.ReactNode
 }) {
     return (
-        <ChakraProvider>
             {children}
-        </ChakraProvider>
     )
-}
+} */

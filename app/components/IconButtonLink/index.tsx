@@ -1,7 +1,6 @@
 "use client";
 import Link from 'next/link'
-import { Button, Text, Tooltip } from '@chakra-ui/react'
-import { Icon } from '@chakra-ui/react'
+import { Button, Tooltip } from '@mui/material';
 
 
 export default function IconButtonLink(props: {
@@ -13,11 +12,11 @@ export default function IconButtonLink(props: {
 
 
     return (
-        <Button colorScheme='blue' key={props.href}>
+        <Button  key={props.href}>
             <Link style={{ textDecoration: "none" }} href={props.href}>
-                <Tooltip label={props.label}>
+                <Tooltip title={props.label}>
                     <span>
-                        <Icon as={props.icon} />
+                        :D
                     </span>
                 </Tooltip></Link>
         </Button>
