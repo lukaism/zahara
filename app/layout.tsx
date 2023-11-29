@@ -2,6 +2,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import MainNavigation from './components/MainNavigation'
 import AuthProvider from './context/AuthProvider'
+import { Toaster } from 'react-hot-toast'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,10 +22,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-          <body >
-            <MainNavigation />
-            {children}
-          </body>
+        <body >
+          <Toaster position="top-right" />
+          <MainNavigation />
+          {children}
+        </body>
       </AuthProvider>
     </html>
   )

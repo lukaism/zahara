@@ -2,13 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { Button, Dialog, DialogContent, DialogActions } from '@mui/material'
-import AddUserForm from '../AddUserForm';
+import AddUserForm from '../Forms/UserForms/AddUserForm';
 
 export default function DeleteUserActionButton(props: any) {
     // props is ICellRenererParams. See:
     // https://www.ag-grid.com/react-grid/component-cell-renderer/#cell-renderer-component-2
     const { id } = props.value;
-    console.log("props", props)
     const [open, setOpen] = useState(false);
     const [data, setData] = useState(false);
     const [loading, setLoading] = useState(false);

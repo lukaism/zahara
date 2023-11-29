@@ -51,7 +51,7 @@ model Turnos {
 
 model Country {
   id String @id @default(uuid())
-  name String  
+  name String  @unique
 }
 
 model Atendant {
