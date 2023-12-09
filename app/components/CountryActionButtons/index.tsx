@@ -2,18 +2,21 @@
 
 import { useState, useEffect } from 'react'
 import { Button, ButtonGroup } from '@mui/material'
-import { deleteCountry } from '@/utils/actions';
+import { deleteCountry, editCountry } from '@/utils/actions';
 import EditCountryForm from '../Forms/CountryForms/EditCountryForm';
 import DialogContainer from '../Dialogs/DialogContainer';
+import { useForm, SubmitHandler } from "react-hook-form";
+import { InputsCountry } from '@/utils/types/inputTypes';
+
+
+
 
 export default function CountryActionButtons(props: any) {
+    const { register, handleSubmit, control, formState: { errors } } = useForm<InputsCountry>();
+
     const [id, setId] = useState(props.id)
-    // props is ICellRenererParams. See:
-    // https://www.ag-grid.com/react-grid/component-cell-renderer/#cell-renderer-component-
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
     const [openEditDialog, setOpenEditDialog] = useState(false);
-    const [data, setData] = useState(false);
-    const [loading, setLoading] = useState(false);
     const onCloseEdit = () => setOpenEditDialog(false);
     const onCloseDelete = () => setOpenDeleteDialog(false);
 
@@ -27,26 +30,26 @@ export default function CountryActionButtons(props: any) {
     function handleDeleteCountry() {
         console.log("id 2bdelete", id)
         deleteCountry(id)
-
-
     }
 
-    function handleEditCountry() {
-
+    function handleEditCountry(data: SubmitHandler<InputsCountry>) {
+    }
+    const onSubmit: SubmitHandler<InputsCountry> = data => {
+        editCountry(data, id)
     }
 
     return (
         <>
             <ButtonGroup style={{ marginRight: "4px" }}>
-                <Button style={{ backgroundColor: "red", color: "white", maxWidth: "70px" }} onClick={() => setOpenDeleteDialog(true)}>Borrar</Button>
-                <Button style={{ backgroundColor: "green", color: "white", maxWidth: "70px" }} onClick={() => setOpenEditDialog(true)}>Editar</Button>
+                <Button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-700 rounded" onClick={() => setOpenDeleteDialog(true)}>Borrar</Button>
+                <Button className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 border border-green-700 rounded" onClick={() => setOpenEditDialog(true)}>Editar</Button>
             </ButtonGroup>
 
-            <DialogContainer open={openDeleteDialog} onCloseDialog={onCloseDelete} warning={true} onActionDialog={handleDeleteCountry} textAction='Borrar pais' textCancel='Cancelar'>
+            <DialogContainer open={openDeleteDialog} onCloseDialog={onCloseDelete} showCancelButton={true} warning={true} showConfirmButton={true} onActionDialog={handleDeleteCountry} textAction='Borrar pais' textCancel='Cancelar'>
                 <div>Seguro que quieres borrar el pais?</div>
             </DialogContainer>
-            <DialogContainer open={openEditDialog} onCloseDialog={onCloseEdit} warning={true} onActionDialog={handleEditCountry} textAction='Editar pais' textCancel='Cancelar'>
-                <EditCountryForm countryId={id} />
+            <DialogContainer open={openEditDialog} onCloseDialog={onCloseEdit} warning={false} showConfirmButton={false} showCancelButton={false} onActionDialog={handleEditCountry} textAction='Editar pais' textCancel='Cancelar'>
+                <EditCountryForm countryId={id} onCloseDialog={onCloseEdit} />
             </DialogContainer>
         </>
     );
